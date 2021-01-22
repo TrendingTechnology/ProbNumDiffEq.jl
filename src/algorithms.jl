@@ -21,11 +21,12 @@ See also: [`EK1`](@ref)
 - F. Tronarp, H. Kersting, S. Särkkä, and P. Hennig: **Probabilistic Solutions To Ordinary
   Differential Equations As Non-Linear Bayesian Filtering: A New Perspective**
 """
-Base.@kwdef struct EK0 <: AbstractEK
+Base.@kwdef struct EK0{G} <: AbstractEK where {G}
     prior::Symbol = :ibm
     order::Int = 1
     diffusionmodel::Symbol = :dynamic
     smooth::Bool = true
+    manifold::G = nothing
 end
 
 
@@ -43,9 +44,12 @@ See also: [`EK0`](@ref)
 # References:
 - F. Tronarp, H. Kersting, S. Särkkä, and P. Hennig: **Probabilistic Solutions To Ordinary Differential Equations As Non-Linear Bayesian Filtering: A New Perspective**
 """
-Base.@kwdef struct EK1 <: AbstractEK
+Base.@kwdef struct EK1{G} <: AbstractEK where {G}
     prior::Symbol = :ibm
     order::Int = 1
     diffusionmodel::Symbol = :dynamic
     smooth::Bool = true
+    manifold::G = nothing
+    mprojtime::Symbol = :after
+    mprojmaxiters::Int = 1
 end
